@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 
 function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
+  const {locale, locales} = useRouter();
 
   const getValue = () => searchRef.current?.value;
 
@@ -19,6 +21,8 @@ function Header() {
       });
   };
 
+  const restOfLocales = locales.filter((l) => l !== locale);
+  
   return (
   <header className='flex items-center justify-between max-w-xl p-4 m-auto'>
     <h1 className='font-bold'>
@@ -34,6 +38,11 @@ function Header() {
         <li>
           <Link href={`/`} legacyBehavior>
             <a className="text-sm font-semibold">Home</a>
+          </Link>
+        </li>
+        <li>
+          <Link href={`/`} legacyBehavior locale={restOfLocales[0]}>
+            <a className="text-sm font-semibold">{restOfLocales[0]}</a>
           </Link>
         </li>
         <li>

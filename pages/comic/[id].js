@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from 'components/Header';
 import Image from 'next/image';
 import Link from 'next/link';
-import { readdirSync, readFileSync, statSync } from 'fs';
+import { readdirSync, readFileSync, stat  } from 'fs';
 import { basename } from 'path';
 import Layout from 'components/Layout';
 
@@ -30,17 +30,24 @@ export default function Comic({ id, img, alt, title, nextId, prevId, hasNext, ha
   )
 }
 
-export async function getStaticPaths() {
-  const files = await readdirSync('./comics');
+export async function getStaticPaths({ locales }) {
+  const files = await readdirSync('./comics', function(err) {
+    if(err) console.log('error', err);
+  });
+  let paths = [];
 
-  const paths = files.map(file => {
-    const id = basename(file, '.json');
-    return { params: { id } }
-  })
-
+  
+  locales.forEach(locale => {
+    paths = paths.concat(files.map(file => {
+      const id = basename(file, '.json')
+      return { params: { id }, locale }
+    })
+    )
+  });
+  
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
@@ -54,8 +61,12 @@ export async function getStaticProps ({ params }) {
   const nextId = idNumber + 1;
 
   const [ prevResult, nextResult ] = await Promise.allSettled([
-    statSync(`./comics/${prevId}.json`),
-    statSync(`./comics/${nextId}.json`)
+    stat(`./comics/${prevId}.json`, function(err) {
+    if(err) console.log('error', err);
+    }),
+    stat(`./comics/${nextId}.json`, function(err) {
+    if(err) console.log('error', err);
+    })
   ])
 
   const hasPrev = prevResult.status === 'fulfilled';
