@@ -11,7 +11,6 @@ export function I18nProvider({ children }) {
   const { locale } = useRouter();
   const t = useCallback((key, ...args) => {
     let translation = languages[locale][key];
-    console.log(translation)
     if (args.length === 0) return translation
     
     args.forEach((value, index) => {

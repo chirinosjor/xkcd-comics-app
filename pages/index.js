@@ -53,8 +53,6 @@ export async function getStaticProps(context) {
 
   const latestComics = await Promise.all(promisesReadFiles);
 
-  console.log(latestComics)
-
   return {
     props: {
       latestComics
