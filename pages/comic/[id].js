@@ -65,7 +65,7 @@ export async function getStaticProps ({ params }) {
     if(err) console.log('error', err);
     }),
     stat(`./comics/${nextId}.json`, function(err) {
-    if(err) console.log('error', err);
+    if(err) console.log('error!', err);
     })
   ])
 
