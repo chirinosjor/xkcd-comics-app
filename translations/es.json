@@ -1,4 +1,13 @@
 {
+  "INDEX_PAGE_TITLE": "xkcd - Comics para desarrolladores",
   "LATEST_COMICS": "Últimos Cómics",
-  "SEARCH_RESULTS_TITLE": "{1} resultados para {2}"
+  "SEARCH_BAR_PLACEHOLDER": "Buscar comics",
+  "SEARCH_BAR_SEE": "Ver",
+  "SEARCH_BAR_RESULTS": "resultados",
+  "NABVAR_HOME" : "Inicio",
+  "SEARCH_RESULTS_TITLE": "{1} resultados para {2}",
+  "PAGINATION_PREV_BUTTON": "Anterior",
+  "PAGINATION_NEXT_BUTTON": "Siguiente",
+  "FOOTER_POWERED_BY": "Desarrollado por",
+  "FOOTER_CREATED_BY": "Creado por"
 }

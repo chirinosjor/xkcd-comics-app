@@ -1,4 +1,13 @@
 {
+  "INDEX_PAGE_TITLE": "xkcd - Comics for developers",
   "LATEST_COMICS": "Latest Comics",
-  "SEARCH_RESULTS_TITLE": "${1} results for ${2}"
+  "SEARCH_BAR_PLACEHOLDER": "Search comics",
+  "SEARCH_BAR_SEE": "See",
+  "SEARCH_BAR_RESULTS": "results",
+  "NABVAR_HOME": "Home",
+  "SEARCH_RESULTS_TITLE": "${1} results for ${2}",
+  "PAGINATION_PREV_BUTTON": "Previous",
+  "PAGINATION_NEXT_BUTTON": "Next",
+  "FOOTER_POWERED_BY": "Powered by",
+  "FOOTER_CREATED_BY": "Created by"
 }

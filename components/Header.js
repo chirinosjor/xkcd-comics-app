@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import { useI18n } from 'context/i18n';
 
 
 function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
   const {locale, locales} = useRouter();
+  const { t } = useI18n();
 
   const getValue = () => searchRef.current?.value;
 
@@ -40,7 +42,7 @@ function Header() {
             ref={searchRef} 
             type='search' 
             onChange={handleChange}
-            placeholder="🔎 Buscar comics . . ." 
+            placeholder={`🔎 ${t('SEARCH_BAR_PLACEHOLDER')} . . .`} 
           />
           <div className='relative z-10 items-center'>
             {
@@ -48,7 +50,7 @@ function Header() {
                 <ul className='w-full border-gray-50 rounded-lg shadow-xl bg-white overflow-hidden'>
                   <li key={"all-results"}>
                     <Link href={`/search?q=${getValue()}`} className='text-gray-400 italic text-ellipsis overflow-hidden whitespace-nowrap block px-2 py-1 m-0 text-sm font-semibold hover:bg-slate-200'>
-                        Ver {results.length} resultados                  
+                        {`${t('SEARCH_BAR_SEE')} ${results.length} ${t('SEARCH_BAR_RESULTS')}`}                  
                     </Link>
                   </li>
                   {results.map(result => {
@@ -67,7 +69,7 @@ function Header() {
         </li>
         <li className='flex-none'>
           <Link href={`/`} className="text-sm font-semibold">
-            Home
+            {t('NABVAR_HOME')}
           </Link>
         </li>
         <li className='flex-none'>

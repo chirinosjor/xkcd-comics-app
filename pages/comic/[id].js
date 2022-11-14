@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { readdirSync, readFileSync, stat  } from 'fs';
 import { basename } from 'path';
 import Layout from 'components/Layout';
+import { useI18n } from 'context/i18n';
 
 export default function Comic({ id, img, alt, title, nextId, prevId, hasNext, hasPrev }) {
+  const { t } = useI18n();
   return (
     <>      
       <Head>
-        <title>xkcd - Comics for developers</title>
+        <title>{`Comic #${id} - ${title}`}</title>
         <meta name="description" content="Comics for developers" />
       </Head>
 
@@ -22,8 +24,8 @@ export default function Comic({ id, img, alt, title, nextId, prevId, hasNext, ha
         <p>{alt}</p>
 
         <div className='flex justify-between mt-4'>
-          {hasPrev && <Link href={`/comic/${prevId}`} className='text-blue-500'>⬅️ Previous</Link>}
-          {hasNext && <Link href={`/comic/${nextId}`} className='text-blue-500'>Next ➡️</Link>}
+          {hasPrev && <Link href={`/comic/${prevId}`} className='text-blue-500'>⬅️ {t('PAGINATION_PREV_BUTTON')}</Link>}
+          {hasNext && <Link href={`/comic/${nextId}`} className='text-blue-500'>{t('PAGINATION_NEXT_BUTTON')} ➡️</Link>}
         </div>
       </Layout>
     </>

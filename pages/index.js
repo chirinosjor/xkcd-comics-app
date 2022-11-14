@@ -14,7 +14,7 @@ export default function Home({ latestComics }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>xkcd - Comics for developers</title>
+        <title>{t('INDEX_PAGE_TITLE')}</title>
         <meta name="description" content="Comics for developers" />
       </Head>
     
