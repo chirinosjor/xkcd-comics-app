@@ -24,52 +24,38 @@ function Header() {
   const restOfLocales = locales.filter((l) => l !== locale);
   
   return (
-  <header className='flex items-center justify-between max-w-xl p-4 m-auto'>
-    <h1 className='font-bold'>
-      <Link href='/' legacyBehavior>
-        <a className="transition hover:opacity-80">
-          next<span className='font-light'>xkcd</span>
-        </a>
-      </Link>
-    </h1>
-
+  <header>
     <nav>
-      <ul className="flex flex-row gap-2">
-        <li>
-          <Link href={`/`} legacyBehavior>
-            <a className="text-sm font-semibold">Home</a>
-          </Link>
+      <ul className="flex items-center justify-between max-w-xl p-4 m-auto gap-4">
+        <li className='flex-none'>
+          <h1 className='font-bold'>
+            <Link href='/' className="transition hover:opacity-80">      
+              next<span className='font-light'>xkcd</span>
+            </Link>
+          </h1>
         </li>
-        <li>
-          <Link href={`/`} legacyBehavior locale={restOfLocales[0]}>
-            <a className="text-sm font-semibold">{restOfLocales[0]}</a>
-          </Link>
-        </li>
-        <li>
+        <li className='grow'>
           <input 
-            className='rounded-lg border-2 px-2 py-1 border-gray-400' 
+            className='rounded-lg border-2 px-2 py-1 border-gray-400 w-full' 
             ref={searchRef} 
             type='search' 
-            onChange={handleChange} 
+            onChange={handleChange}
+            placeholder="🔎 Buscar comics . . ." 
           />
-          <div className='relative z-10'>
+          <div className='relative z-10 items-center'>
             {
               Boolean(results.length) &&  <div className='absolute top-0 left-0'>
                 <ul className='w-full border-gray-50 rounded-lg shadow-xl bg-white overflow-hidden'>
                   <li key={"all-results"}>
-                    <Link href={`/search?q=${getValue()}`} legacyBehavior>
-                      <a className='text-gray-400 italic text-ellipsis overflow-hidden whitespace-nowrap block px-2 py-1 m-0 text-sm font-semibold hover:bg-slate-200'>
-                        Ver {results.length} resultados
-                      </a>
+                    <Link href={`/search?q=${getValue()}`} className='text-gray-400 italic text-ellipsis overflow-hidden whitespace-nowrap block px-2 py-1 m-0 text-sm font-semibold hover:bg-slate-200'>
+                        Ver {results.length} resultados                  
                     </Link>
                   </li>
                   {results.map(result => {
                     return ( 
                       <li key={result.id}>
-                        <Link href={`/comic/${result.id}`} legacyBehavior>
-                          <a className='text-ellipsis overflow-hidden whitespace-nowrap block px-2 py-1 m-0 text-sm font-semibold hover:bg-slate-200'>
-                            {result.title}
-                          </a>
+                        <Link href={`/comic/${result.id}`} className='text-ellipsis overflow-hidden whitespace-nowrap block px-2 py-1 m-0 text-sm font-semibold hover:bg-slate-200'>                       
+                            {result.title}                       
                         </Link>
                       </li>
                     )
@@ -79,9 +65,18 @@ function Header() {
             }
           </div>
         </li>
+        <li className='flex-none'>
+          <Link href={`/`} className="text-sm font-semibold">
+            Home
+          </Link>
+        </li>
+        <li className='flex-none'>
+          <Link href={`/`} className="text-sm font-semibold" locale={restOfLocales[0]}>
+            🌐  {restOfLocales[0] === 'en' ? '🇺🇸' : '🇪🇸'}
+          </Link>
+        </li>
       </ul>
     </nav>
-
   </header>
   )
 }

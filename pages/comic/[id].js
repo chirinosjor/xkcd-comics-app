@@ -17,7 +17,7 @@ export default function Comic({ id, img, alt, title, nextId, prevId, hasNext, ha
       <Layout>
         <h1 className='font-bold mb-2 text-center mt-2'>{title}</h1>
         <div className='max-w-sm m-auto'>
-          <Image layout='responsive' className='m-auto' src={img} height={300} width={300} alt={alt}/>
+          <Image className='m-auto' src={img} height={300} width={300} alt={alt}/>
         </div>
         <p>{alt}</p>
 
