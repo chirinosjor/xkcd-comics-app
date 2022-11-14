@@ -7,7 +7,8 @@ import { useI18n } from 'context/i18n';
 function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
-  const {locale, locales} = useRouter();
+  const {locale, locales, asPath} = useRouter();
+  const router = useRouter();
   const { t } = useI18n();
 
   const getValue = () => searchRef.current?.value;
@@ -73,7 +74,7 @@ function Header() {
           </Link>
         </li>
         <li className='flex-none'>
-          <Link href={`/`} className="text-sm font-semibold" locale={restOfLocales[0]}>
+          <Link href={asPath} className="text-sm font-semibold" locale={restOfLocales[0]}>
             🌐  {restOfLocales[0] === 'en' ? '🇺🇸' : '🇪🇸'}
           </Link>
         </li>
